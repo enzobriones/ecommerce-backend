@@ -9,6 +9,8 @@ const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
   JWT_SECRET: z.string(),
+  RATE_LIMIT_WINDOW_MS: z.string().default('900000'), // 15 minutos
+  RATE_LIMIT_MAX: z.string().default('100'), // 100 solicitudes por ventana
 });
 
 type Env = z.infer<typeof envSchema>;
