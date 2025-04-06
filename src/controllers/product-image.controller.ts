@@ -2,16 +2,10 @@ import type { NextFunction, Request, Response } from 'express';
 import { z } from 'zod';
 import { ProductImageService } from '../services/product-image.service';
 import { ApiError } from '../middlewares/error.middleware';
-
-const createImageSchema = z.object({
-  url: z.string().url(),
-  isMain: z.boolean().default(false),
-});
-
-const updateImageSchema = z.object({
-  url: z.string().url().optional(),
-  isMain: z.boolean().optional(),
-});
+import {
+  createImageSchema,
+  updateImageSchema,
+} from '../schemas/product-image.schema';
 
 export class ProductImageController {
   static async addProductImage(

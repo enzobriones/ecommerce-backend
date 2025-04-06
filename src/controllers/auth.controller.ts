@@ -2,24 +2,11 @@ import type { NextFunction, Request, Response } from 'express';
 import { z } from 'zod';
 import { ApiError } from '../middlewares/error.middleware';
 import { AuthService } from '../services/auth.service';
-
-const registerSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8).max(32),
-  firstName: z.string().min(1).max(50),
-  lastName: z.string().min(1).max(50),
-  phone: z.string().optional(),
-});
-
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8).max(32),
-});
-
-const changePasswordSchema = z.object({
-  currentPassword: z.string().min(8).max(32),
-  newPassword: z.string().min(8).max(32),
-});
+import {
+  registerSchema,
+  loginSchema,
+  changePasswordSchema,
+} from '../schemas/auth.schema';
 
 export class AuthController {
   static async register(req: Request, res: Response, next: NextFunction) {

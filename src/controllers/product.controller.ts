@@ -2,31 +2,11 @@ import type { NextFunction, Request, Response } from 'express';
 import { z } from 'zod';
 import { ApiError } from '../middlewares/error.middleware';
 import { ProductService } from '../services/product.service';
-
-const createProductSchema = z.object({
-  name: z.string().min(1).max(100),
-  description: z.string().min(10),
-  price: z.number().positive(),
-  stock: z.number().int().min(0).default(0),
-  categoryId: z.string().uuid(),
-  attributes: z.record(z.string(), z.any()).optional(),
-  isFeatured: z.boolean().default(false),
-  discount: z.number().min(0).max(100).optional(),
-  slug: z.string().optional(),
-});
-
-const updateProductSchema = createProductSchema.partial();
-
-const queryProductSchema = z.object({
-  skip: z.coerce.number().min(0).default(0),
-  take: z.coerce.number().min(1).max(100).default(20),
-  categoryId: z.string().uuid().optional(),
-  search: z.string().optional(),
-  minPrice: z.coerce.number().min(0).optional(),
-  maxPrice: z.coerce.number().min(0).optional(),
-  orderBy: z.string().default('createdAt_desc'),
-  isFeatured: z.coerce.boolean().optional(),
-});
+import {
+  queryProductSchema,
+  createProductSchema,
+  updateProductSchema,
+} from '../schemas/product.schema';
 
 export class ProductController {
   static async getProducts(req: Request, res: Response, next: NextFunction) {
