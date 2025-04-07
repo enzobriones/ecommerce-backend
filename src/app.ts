@@ -9,6 +9,7 @@ import authRoutes from './routes/auth.routes';
 import productRouter from './routes/product.routes';
 import productImageRouter from './routes/product-image.routes';
 import orderRouter from './routes/order.routes';
+import categoryRouter from './routes/category.routes';
 
 // Initialize app
 const app = express();
@@ -34,6 +35,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRouter);
 app.use('/api/products', productImageRouter);
 app.use('/api/orders', orderRouter);
+app.use('/api/categories', categoryRouter);
 
 // Health check route
 app.get('/health', (req, res) => {
