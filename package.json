@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "clear && bun run src/server.ts --watch"
+    "dev": "clear && bun run src/server.ts --watch",
+    "db:seed": "bun run src/seed/seed.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

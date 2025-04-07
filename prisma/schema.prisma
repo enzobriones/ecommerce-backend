@@ -29,6 +29,7 @@ model Address {
   city      String
   commune   String
   province  String
+  region    String
   zipCode   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
